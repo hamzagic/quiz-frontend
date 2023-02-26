@@ -1,0 +1,7 @@
+.question, .message {
+    text-align: center; 
+}
+
+.message {
+    padding: 10px 0;
+}

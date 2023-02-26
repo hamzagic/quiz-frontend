@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 10%;
+}
+
+.profile {
+    position: absolute;
+    right: 10%;
+    cursor: pointer;
+}
+
+ul {
+    padding: 0;
+    display: flex;
+    list-style: none;
+    cursor: pointer;
+}
+
+li:not(:last-child) {
+    padding-right: 60px;
+}
