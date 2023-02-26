@@ -1,23 +1,30 @@
 import { useState, useEffect } from "react";
 import Quiz from "../components/quizzes/Quiz";
 import { QuizSet } from '../data/quiz';
+import ResultsContainer from "./ResultsContainer";
 
 const QuizContainer = () => {
     const defaultMessage = {
         message: '',
         type: ''
     }
+
+    const initialUserAnswers = [];
+
     const [questions, setQuestions] = useState(QuizSet);
     const [answer, setAnswer] = useState('');
     const [idx, setIdx] = useState(0);
     const [message, setMessage] = useState(defaultMessage);
     const [next, setNext] = useState(false);
+    const [userAnswers, setUserAnswers] = useState(initialUserAnswers);
+    const [resultVisible, setResultVisible] = useState(false);
+
     let qty;
 
     useEffect(() => {
         // need state var to render component again
         console.log('idx', idx)
-    }, [idx, next])
+    }, [idx, next, answer, resultVisible])
 
     const handleClick = (currentQuestion, currentIndex) => {
         setMessage(defaultMessage);
@@ -26,16 +33,14 @@ const QuizContainer = () => {
                 message: 'Please choose an answer',
                 type: 'danger'
             });
-            // setMessage('Please choose an answer');
-            return console.log('NO DATA!')
         };
         if (answer) {
             setNext(true);
             checkCorrectAnswer(currentQuestion, currentIndex);
+            setUserAnswers(initialUserAnswers => [...initialUserAnswers, answer]);
         }
     }
 
-    // style messages red and green
     const checkCorrectAnswer = (current) => {
         if(answer == current.correct) {
             setMessage({
@@ -55,24 +60,22 @@ const QuizContainer = () => {
         qty = quiz.question_set.length;
         setIdx(idx + 1);
         const data = questions;
-        console.log(data.question_set[idx])
+        
         if(idx < qty) {
             data.question_set[idx].display = false;
             if(data.question_set[idx + 1]) {
                 data.question_set[idx + 1].display = true;
             } else {
-                // style message
                 // see results & back to start
                 setMessage({
                     message: 'No more questions',
                     type: 'neutral'
                 });
-                // setMessage('No more questions');
+                setResultVisible(true);
             }
             setQuestions(data);
             setNext(false)
             setAnswer('');
-            
         }
     }
 
@@ -80,14 +83,20 @@ const QuizContainer = () => {
         setAnswer(e.target.value);
     }
     return(
-        <Quiz
-            questions={questions}
-            message={message}
-            handleClick={handleClick}
-            onChange={onChange}
-            handleNext={handleNext}
-            next={next}
-        />
+        <>
+            <Quiz
+                questions={questions}
+                message={message}
+                handleClick={handleClick}
+                onChange={onChange}
+                handleNext={handleNext}
+                next={next}
+            />
+            {resultVisible && <ResultsContainer
+                userAnswers={userAnswers} 
+                questions={questions} 
+            />}
+        </>
     );
 }
 

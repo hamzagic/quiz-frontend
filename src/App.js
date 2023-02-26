@@ -2,7 +2,6 @@ import './App.css';
 import HeaderContainer from './containers/HeaderContainer';
 import QuizContainer from './containers/QuizContainer';
 
-
 function App() {
   return (
     <div>
