@@ -3,10 +3,14 @@ import Quiz from "../components/quizzes/Quiz";
 import { QuizSet } from '../data/quiz';
 
 const QuizContainer = () => {
+    const defaultMessage = {
+        message: '',
+        type: ''
+    }
     const [questions, setQuestions] = useState(QuizSet);
     const [answer, setAnswer] = useState('');
     const [idx, setIdx] = useState(0);
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState(defaultMessage);
     const [next, setNext] = useState(false);
     let qty;
 
@@ -16,47 +20,42 @@ const QuizContainer = () => {
     }, [idx, next])
 
     const handleClick = (currentQuestion, currentIndex) => {
-        setMessage('')
+        setMessage(defaultMessage);
         if(!answer) {
-            setMessage('Please choose an answer');
+            setMessage({
+                message: 'Please choose an answer',
+                type: 'danger'
+            });
+            // setMessage('Please choose an answer');
             return console.log('NO DATA!')
         };
         if (answer) {
-            setIdx(idx + 1);
             setNext(true);
             checkCorrectAnswer(currentQuestion, currentIndex);
         }
     }
 
+    // style messages red and green
     const checkCorrectAnswer = (current) => {
         if(answer == current.correct) {
-            console.log('CORRECT!')
+            setMessage({
+                message: 'Correct!',
+                type: 'success'
+            });
         } else {
-            console.log('WRONG!')
-        }
-
-        const qty = current.answers.length;
-        
-        // handleNext(current, qty);
-        
-        const data = questions;
-        if(idx < qty) {
-            data.question_set[idx].display = false;
-            if(data.question_set[idx + 1]) {
-                data.question_set[idx + 1].display = true;
-            } else {
-                // style message
-                // see results & back to start
-                setMessage('No more questions');
-            }
-            setQuestions(data);
-            setAnswer('');
+            setMessage({
+                message: 'Sorry, that\'s not correct',
+                type: 'danger'
+            });
         }
     }
 
     const handleNext = (quiz) => {
+        setMessage(defaultMessage);
         qty = quiz.question_set.length;
+        setIdx(idx + 1);
         const data = questions;
+        console.log(data.question_set[idx])
         if(idx < qty) {
             data.question_set[idx].display = false;
             if(data.question_set[idx + 1]) {
@@ -64,11 +63,16 @@ const QuizContainer = () => {
             } else {
                 // style message
                 // see results & back to start
-                setMessage('No more questions');
+                setMessage({
+                    message: 'No more questions',
+                    type: 'neutral'
+                });
+                // setMessage('No more questions');
             }
             setQuestions(data);
             setNext(false)
             setAnswer('');
+            
         }
     }
 

@@ -5,3 +5,11 @@
 .message {
     padding: 10px 0;
 }
+
+.success {
+    color: green;
+}
+
+.danger {
+    color: red;
+}

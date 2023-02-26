@@ -1,8 +1,14 @@
 import styles from './Quiz.module.css';
+import classNames from 'classnames';
 
 const Quiz = (props) => {
     const quiz = props.questions;
     const questions = quiz.question_set;
+
+    const messageStyles = classNames(styles.message, {
+        [styles.success]: props.message.type === 'success',
+        [styles.danger]: props.message.type === 'danger'
+    });
    
     const element = questions.map((el,index) =>
         el.display && <div className={styles.question} key={el.id}>
@@ -15,16 +21,16 @@ const Quiz = (props) => {
                 </div>
                 )}   
             </div>
-            <button onClick={() => props.handleClick(el, index)}>Submit</button>
-            {/* {props.next && <button onClick={() => props.handleNext(quiz)}>Next</button>} */}
+            {!props.next && <button onClick={() => props.handleClick(el, index)}>Submit</button>}
+            {props.next && <button onClick={() => props.handleNext(quiz)}>Next</button>}
         </div>
     );
     
     return(
         <>
             {element}
-            <div className={styles.message}>
-                {props.message}
+            <div className={messageStyles}>
+                {props.message.message}
             </div>
         </>
     );
