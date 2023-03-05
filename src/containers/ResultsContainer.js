@@ -1,11 +1,13 @@
 import Results from '../components/results/Results';
 
-const ResultsContainer = () => {
-    // total questions
-    // total correct
-    // total wrong
+const ResultsContainer = (props) => {
+    console.log('props', props);
     return(
-        <Results />
+        <Results
+            correct={props.correct}
+            incorrect={props.incorrect}
+            totalQuestions={props.totalQuestions}
+        />
     );
 }
 

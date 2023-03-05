@@ -16,8 +16,10 @@ const QuizContainer = () => {
     const [idx, setIdx] = useState(0);
     const [message, setMessage] = useState(defaultMessage);
     const [next, setNext] = useState(false);
-    const [userAnswers, setUserAnswers] = useState(initialUserAnswers);
+    // const [userAnswers, setUserAnswers] = useState(initialUserAnswers);
     const [resultVisible, setResultVisible] = useState(false);
+    const [correct, setCorrect] = useState(0);
+    const [incorrect, setIncorrect] = useState(0);
 
     let qty;
 
@@ -37,17 +39,19 @@ const QuizContainer = () => {
         if (answer) {
             setNext(true);
             checkCorrectAnswer(currentQuestion, currentIndex);
-            setUserAnswers(initialUserAnswers => [...initialUserAnswers, answer]);
+            // setUserAnswers(initialUserAnswers => [...initialUserAnswers, answer]);
         }
     }
 
     const checkCorrectAnswer = (current) => {
         if(answer == current.correct) {
+            setCorrect(correct + 1);
             setMessage({
                 message: 'Correct!',
                 type: 'success'
             });
         } else {
+            setIncorrect(incorrect + 1);
             setMessage({
                 message: 'Sorry, that\'s not correct',
                 type: 'danger'
@@ -60,7 +64,8 @@ const QuizContainer = () => {
         qty = quiz.question_set.length;
         setIdx(idx + 1);
         const data = questions;
-        
+        // data.userAnswers = userAnswers;
+
         if(idx < qty) {
             data.question_set[idx].display = false;
             if(data.question_set[idx + 1]) {
@@ -68,7 +73,7 @@ const QuizContainer = () => {
             } else {
                 // see results & back to start
                 setMessage({
-                    message: 'No more questions',
+                    message: '',
                     type: 'neutral'
                 });
                 setResultVisible(true);
@@ -82,6 +87,7 @@ const QuizContainer = () => {
     const onChange = (e) => {
         setAnswer(e.target.value);
     }
+
     return(
         <>
             <Quiz
@@ -93,8 +99,11 @@ const QuizContainer = () => {
                 next={next}
             />
             {resultVisible && <ResultsContainer
-                userAnswers={userAnswers} 
-                questions={questions} 
+                // userAnswers={userAnswers} 
+                // questions={questions} 
+                correct={correct}
+                incorrect={incorrect}
+                totalQuestions={questions.question_set.length}
             />}
         </>
     );

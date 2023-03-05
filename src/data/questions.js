@@ -2,8 +2,8 @@ export const QuestionsList = () => ([
         {
             'id': 'sdf32f',
             'question': 'How many days has one year?',
-            'answers': [180, 360, 365, 'None'],
-            'correct': 365,
+            'answers': ['180', '360', '365', 'None'],
+            'correct': '365',
             'display': true
         },
         {
