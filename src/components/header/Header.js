@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from './Header.module.css';
 
 const Header = () => {
@@ -5,9 +7,9 @@ const Header = () => {
         <div className={styles.container}>
             <div className={styles.logo}>QuizShine</div>
             <ul>
-                <li>Home</li>
-                <li>Quizzes</li>
-                <li>About</li>
+                <li><Link to="/home">Home</Link></li>
+                <li><Link to="/quizzes">Quizzes</Link></li>
+                <li><Link to="#">About</Link></li>
             </ul>
             <div className={styles.profile}>Profile</div>
         </div>
