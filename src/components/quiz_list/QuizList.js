@@ -1,15 +1,15 @@
-import { useContext } from "react";
-import { AppContext } from "../../App";
-import quizList from "../../data/quizList";
+import useQuiz from "../../store/context/AppContext";
 import styles from './QuizList.module.css';
 
 const QuizList = () => {
-    const appContext = useContext(AppContext);
-    console.log('adf', appContext)
+    const quizData = useQuiz();
+    const quizList = quizData.state.quizzes;
+
     const handleClick = (id) => {
         console.log('dddd', id)
     }
-    const quizzes = appContext.map(quiz => 
+
+    const quizzes = quizList.map(quiz => 
         <div key={quiz.id}>
             <span>{quiz.name}</span><button onClick={() => handleClick(quiz.id)}>Start Quiz</button>
         </div>);

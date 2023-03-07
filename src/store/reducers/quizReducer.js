@@ -1,9 +1,22 @@
-const defaultState = {
-    current: {}
+import quizList from "../../data/quizList";
+export const defaultState = {
+    quizzes: quizList,
+    currentQuiz: {}
 }
 
+export const NEW_QUIZ = 'new_quiz';
+
 const quizReducer = (state, action) => {
-    return defaultState;
+    const { type, payload } = action;
+    switch (type) {
+        case "NEW_QUIZ":
+            return {
+                ...state,
+                currentQuiz: payload
+            }
+        default:
+            return defaultState;
+    }
 }
 
 export default quizReducer;
