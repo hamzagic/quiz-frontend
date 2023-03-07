@@ -6,8 +6,7 @@ const QuizContext = createContext(defaultState);
 export const QuizProvider = ({ children }) => {
     const [state, dispatch] = useReducer(quizReducer, defaultState);
     const startNewQuiz = (payload) => {
-        const updateQuiz = state.currentQuiz.concat(payload);
-        dispatch({type: "NEW_QUIZ", payload: updateQuiz })
+        dispatch({type: "NEW_QUIZ", payload })
     }
 
     const value = {

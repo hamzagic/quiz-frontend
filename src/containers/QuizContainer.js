@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Quiz from "../components/quizzes/Quiz";
-import { QuizSet } from '../data/quiz';
+// import { QuizSet } from '../data/quiz';
 import ResultsContainer from "./ResultsContainer";
+import useQuiz from "../store/context/AppContext";
 
 const QuizContainer = () => {
     const defaultMessage = {
@@ -9,9 +10,12 @@ const QuizContainer = () => {
         type: ''
     }
 
+    const { state } = useQuiz();
+    console.log('blah', state)
+
     const initialUserAnswers = [];
 
-    const [questions, setQuestions] = useState(QuizSet);
+    const [questions, setQuestions] = useState(state.currentQuiz);
     const [answer, setAnswer] = useState('');
     const [idx, setIdx] = useState(0);
     const [message, setMessage] = useState(defaultMessage);
