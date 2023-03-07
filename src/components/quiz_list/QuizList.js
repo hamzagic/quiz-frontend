@@ -1,12 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import useQuiz from "../../store/context/AppContext";
 import styles from './QuizList.module.css';
 
 const QuizList = () => {
     const quizData = useQuiz();
     const quizList = quizData.state.quizzes;
+    const navigate = useNavigate();
 
     const handleClick = (data) => {
         quizData.startNewQuiz(data);
+        navigate('/home');
     }
 
     const quizzes = quizList.map(quiz => 

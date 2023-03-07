@@ -1,8 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useQuiz from '../../store/context/AppContext';
 
 import styles from './Results.module.css';
 
 const Results = (props) => {
+    const navigate = useNavigate();
+    const { resetQuiz } = useQuiz();
+    const handleReset = () => {
+        resetQuiz();
+        navigate('/home');
+    }
     return(
         <>
         <div className={styles.container}>
@@ -13,7 +20,7 @@ const Results = (props) => {
                 <p> Score: {props.correct} / {props.totalQuestions}</p>
             </div>
         </div>
-        <div>Return to <Link to='/home'>Home Page</Link></div> 
+        <div onClick={handleReset} className={styles.return}>Return to the Home Page</div> 
         </>
     );
 }

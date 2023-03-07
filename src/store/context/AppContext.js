@@ -9,9 +9,14 @@ export const QuizProvider = ({ children }) => {
         dispatch({type: "NEW_QUIZ", payload })
     }
 
+    const resetQuiz = () => {
+        dispatch({type: "RESET_QUIZ"});
+    }
+
     const value = {
         state,
-        startNewQuiz
+        startNewQuiz,
+        resetQuiz
     }
 
     return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>

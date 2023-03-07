@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Quiz from "../components/quizzes/Quiz";
-// import { QuizSet } from '../data/quiz';
 import ResultsContainer from "./ResultsContainer";
 import useQuiz from "../store/context/AppContext";
 
@@ -11,7 +10,6 @@ const QuizContainer = () => {
     }
 
     const { state } = useQuiz();
-    console.log('blah', state)
 
     const initialUserAnswers = [];
 
@@ -20,12 +18,12 @@ const QuizContainer = () => {
     const [idx, setIdx] = useState(0);
     const [message, setMessage] = useState(defaultMessage);
     const [next, setNext] = useState(false);
-    // const [userAnswers, setUserAnswers] = useState(initialUserAnswers);
     const [resultVisible, setResultVisible] = useState(false);
     const [correct, setCorrect] = useState(0);
     const [incorrect, setIncorrect] = useState(0);
 
     let qty;
+    console.log('aaaa', questions)
 
     useEffect(() => {
         // need state var to render component again
@@ -43,7 +41,6 @@ const QuizContainer = () => {
         if (answer) {
             setNext(true);
             checkCorrectAnswer(currentQuestion, currentIndex);
-            // setUserAnswers(initialUserAnswers => [...initialUserAnswers, answer]);
         }
     }
 
@@ -68,7 +65,6 @@ const QuizContainer = () => {
         qty = quiz.question_set.length;
         setIdx(idx + 1);
         const data = questions;
-        // data.userAnswers = userAnswers;
 
         if(idx < qty) {
             data.question_set[idx].display = false;
@@ -101,10 +97,9 @@ const QuizContainer = () => {
                 onChange={onChange}
                 handleNext={handleNext}
                 next={next}
+                title={questions.name}
             />
             {resultVisible && <ResultsContainer
-                // userAnswers={userAnswers} 
-                // questions={questions} 
                 correct={correct}
                 incorrect={incorrect}
                 totalQuestions={questions.question_set.length}

@@ -15,6 +15,8 @@ const quizReducer = (state, action) => {
                 ...state,
                 currentQuiz: payload
             }
+        case "RESET_QUIZ":
+            return defaultState;
         default:
             return defaultState;
     }

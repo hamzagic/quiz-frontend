@@ -10,7 +10,7 @@ const Quiz = (props) => {
         [styles.danger]: props.message.type === 'danger'
     });
    
-    const element = questions.map((el,index) =>
+    const element = questions && questions.map((el,index) =>
         el.display && <div className={styles.question} key={el.id}>
             <p>{el.question}</p>
             <div className={styles.answers}>
@@ -27,7 +27,8 @@ const Quiz = (props) => {
     );
     
     return(
-        <>
+        <>  
+            <h2 className={styles.title}>{quiz.name}</h2>
             {element}
             <div className={messageStyles}>
                 {props.message.message}
