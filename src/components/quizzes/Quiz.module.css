@@ -1,5 +1,42 @@
+.question {
+    width: 40vw;
+    margin: 0 auto;
+}
+
+.question_title {
+    padding-top: 14px;
+}
+
 .question, .message, .title {
     text-align: center; 
+}
+
+.options {
+    width: 20vw;
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-items: flex-start;
+    margin: 0 auto;
+    padding: 5px 0;
+}
+
+.options label {
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.submitBtn, .nextBtn {
+    margin: 10px 0;
+    padding: 5px 15px;
+    background-color: blueviolet;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submitBtn:hover, .nextBtn:hover {
+    opacity: .9;
 }
 
 .message {

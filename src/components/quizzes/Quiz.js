@@ -11,18 +11,19 @@ const Quiz = (props) => {
     });
    
     const element = questions && questions.map((el,index) =>
-        el.display && <div className={styles.question} key={el.id}>
-            <p>{el.question}</p>
+        el.display && 
+        <div className={styles.question} key={el.id}>
+            <p className={styles.question_title}>{el.question}</p>
             <div className={styles.answers}>
                 {el.answers.map((ans, idx) => 
-                <div key={idx}>
-                    <input type="radio" name="q1" value={ans} onChange={props.onChange} />
-                    <label>{ans}</label>
+                <div key={idx} className={styles.options}>
+                    <input type="radio" id={`opt${idx}`} name="q1" value={ans} onChange={props.onChange} />
+                    <label htmlFor={`opt${idx}`}>{ans}</label>
                 </div>
                 )}   
             </div>
-            {!props.next && <button onClick={() => props.handleClick(el, index)}>Submit</button>}
-            {props.next && <button onClick={() => props.handleNext(quiz)}>Next</button>}
+            {!props.next && <button onClick={() => props.handleClick(el, index)} className={styles.submitBtn}>Submit</button>}
+            {props.next && <button onClick={() => props.handleNext(quiz)} className={styles.nextBtn}>Next</button>}
         </div>
     );
     
