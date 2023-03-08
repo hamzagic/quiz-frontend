@@ -1,6 +1,11 @@
-.question {
+.container {
     width: 40vw;
     margin: 0 auto;
+    background-color: rgba(249, 244, 239, 0.867);
+}
+
+.question {
+   
 }
 
 .question_title {

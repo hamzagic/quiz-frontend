@@ -28,5 +28,35 @@ export default [
                 'display': false
             }
         ]
+    },
+    {
+        'id': '89rrtjdk',
+        'subject': 'music',
+        'owner': 'user_id',
+        'public': true,
+        'name': 'Electronic Music',
+        'question_set': [
+            {
+                'id': 'fdwersa',
+                'question': 'Which one of these bands is not electronic?',
+                'answers': ['Depeche Mode', 'Kraftwerk', 'Van Halen', 'Pet Shop Boys'],
+                'correct': 'Van Halen',
+                'display': true
+            },
+            {
+                'id': 'hgkj75',
+                'question': 'Which of the following songs was composed by Depeche Mode?',
+                'answers': ['Wasted Years', 'Strangelove', 'Rio', 'West End Girls'],
+                'correct': 'Strangelove',
+                'display': false
+            },
+            {
+                'id': '23rehhs',
+                'question': 'Which album below was composed by Kraftwerk?',
+                'answers': ['Back in Black', 'Bad', 'Jagged Little Pill', 'Computer World'],
+                'correct': 'Computer World',
+                'display': false
+            }
+        ]
     }
 ];

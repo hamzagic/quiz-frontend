@@ -11,8 +11,6 @@ const QuizContainer = () => {
 
     const { state } = useQuiz();
 
-    const initialUserAnswers = [];
-
     const [questions, setQuestions] = useState(state.currentQuiz);
     const [answer, setAnswer] = useState('');
     const [idx, setIdx] = useState(0);
@@ -21,9 +19,9 @@ const QuizContainer = () => {
     const [resultVisible, setResultVisible] = useState(false);
     const [correct, setCorrect] = useState(0);
     const [incorrect, setIncorrect] = useState(0);
-
+    const [block, setBlock] = useState(false);
+ 
     let qty;
-    console.log('aaaa', questions)
 
     useEffect(() => {
         // need state var to render component again
@@ -41,6 +39,7 @@ const QuizContainer = () => {
         if (answer) {
             setNext(true);
             checkCorrectAnswer(currentQuestion, currentIndex);
+            setBlock(true);
         }
     }
 
@@ -81,6 +80,7 @@ const QuizContainer = () => {
             setQuestions(data);
             setNext(false)
             setAnswer('');
+            setBlock(false);
         }
     }
 
@@ -98,6 +98,7 @@ const QuizContainer = () => {
                 handleNext={handleNext}
                 next={next}
                 title={questions.name}
+                block={block}
             />
             {resultVisible && <ResultsContainer
                 correct={correct}

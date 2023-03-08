@@ -13,8 +13,8 @@ const QuizList = () => {
     }
 
     const quizzes = quizList.map(quiz => 
-        <div key={quiz.id}>
-            <span>{quiz.name}</span><button onClick={() => handleClick(quiz)}>Start Quiz</button>
+        <div key={quiz.id} className={styles.list}>
+            <span className={styles.listItem}>{quiz.name}</span><button onClick={() => handleClick(quiz)}>Start Quiz</button>
         </div>);
 
     return(

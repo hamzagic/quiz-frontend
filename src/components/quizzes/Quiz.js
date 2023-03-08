@@ -17,7 +17,7 @@ const Quiz = (props) => {
             <div className={styles.answers}>
                 {el.answers.map((ans, idx) => 
                 <div key={idx} className={styles.options}>
-                    <input type="radio" id={`opt${idx}`} name="q1" value={ans} onChange={props.onChange} />
+                    <input type="radio" id={`opt${idx}`} name="q1" value={ans} onChange={props.onChange} disabled={props.block} />
                     <label htmlFor={`opt${idx}`}>{ans}</label>
                 </div>
                 )}   
@@ -28,13 +28,13 @@ const Quiz = (props) => {
     );
     
     return(
-        <>  
+        <div className={styles.container}>  
             <h2 className={styles.title}>{quiz.name}</h2>
             {element}
             <div className={messageStyles}>
                 {props.message.message}
             </div>
-        </>
+        </div>
     );
 }
 
