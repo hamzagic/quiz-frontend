@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
-
+import classNames from 'classnames';
 import styles from './Header.module.css';
 
-const Header = () => {
+const Header = ({isFinished}) => {
+    const headerStyles = classNames(styles.container, {
+        [styles.blur]: !isFinished
+    })
     return(
-        <div className={styles.container}>
+        <div className={headerStyles}>
             <div className={styles.logo}>QuizShine</div>
             <ul>
                 <li><Link to="/home">Home</Link></li>

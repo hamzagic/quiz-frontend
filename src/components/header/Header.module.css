@@ -5,6 +5,10 @@
     position: relative;
 }
 
+.blur {
+    pointer-events: none;
+}
+
 .logo {
     position: absolute;
     left: 10%;
