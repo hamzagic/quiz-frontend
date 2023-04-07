@@ -20,7 +20,7 @@ const Results = (props) => {
                 <p> Score: {props.correct} / {props.totalQuestions}</p>
             </div>
         </div>
-        <div onClick={handleReset} className={styles.return}>Return to the Home Page</div> 
+        <div onClick={handleReset} className={styles.return}><span>Return to the Home Page</span></div> 
         </>
     );
 }

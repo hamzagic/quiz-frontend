@@ -4,8 +4,8 @@
     background-color: rgba(249, 244, 239, 0.867);
 }
 
-.question {
-   
+.ok {
+   background-color: rgba(0, 128, 0, 0.5);
 }
 
 .question_title {
@@ -38,6 +38,7 @@
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
+    color: #fff;
 }
 
 .submitBtn:hover, .nextBtn:hover {

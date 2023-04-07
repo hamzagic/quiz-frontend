@@ -5,10 +5,18 @@ const Quiz = (props) => {
     const quiz = props.questions;
     const questions = quiz.question_set;
 
+    const isSame = (x, y) => {
+        if(x === y) {
+            return true
+        }
+        return false;
+    }
+
     const messageStyles = classNames(styles.message, {
         [styles.success]: props.message.type === 'success',
         [styles.danger]: props.message.type === 'danger'
     });
+
    
     const element = questions && questions.map((el,index) =>
         el.display && 
@@ -16,7 +24,7 @@ const Quiz = (props) => {
             <p className={styles.question_title}>{el.question}</p>
             <div className={styles.answers}>
                 {el.answers.map((ans, idx) => 
-                <div key={idx} className={styles.options}>
+                <div key={idx} className={isSame(ans, el.correct) && props.answered ? styles.ok : ''}>
                     <input type="radio" id={`opt${idx}`} name="q1" value={ans} onChange={props.onChange} disabled={props.block} />
                     <label htmlFor={`opt${idx}`}>{ans}</label>
                 </div>

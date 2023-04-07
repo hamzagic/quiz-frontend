@@ -5,5 +5,12 @@
 
 .return {
     text-align: center;
+    line-height: 100%;
     cursor: pointer;
+    font-weight: 600;
+    width: 20vw;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 10px 0;
+    background-color: bisque;
 }

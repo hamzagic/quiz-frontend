@@ -20,13 +20,14 @@ const QuizContainer = () => {
     const [correct, setCorrect] = useState(0);
     const [incorrect, setIncorrect] = useState(0);
     const [block, setBlock] = useState(false);
+    const [answered, setAnswered] = useState(false);
  
     let qty;
 
     useEffect(() => {
         // need state var to render component again
         console.log('idx', idx)
-    }, [idx, next, answer, resultVisible])
+    }, [idx, next, answer, resultVisible, answered])
 
     const handleClick = (currentQuestion, currentIndex) => {
         setMessage(defaultMessage);
@@ -44,6 +45,7 @@ const QuizContainer = () => {
     }
 
     const checkCorrectAnswer = (current) => {
+        setAnswered(true);
         if(answer == current.correct) {
             setCorrect(correct + 1);
             setMessage({
@@ -81,6 +83,7 @@ const QuizContainer = () => {
             setNext(false)
             setAnswer('');
             setBlock(false);
+            setAnswered(false);
         }
     }
 
@@ -99,6 +102,7 @@ const QuizContainer = () => {
                 next={next}
                 title={questions.name}
                 block={block}
+                answered={answered}
             />
             {resultVisible && <ResultsContainer
                 correct={correct}
